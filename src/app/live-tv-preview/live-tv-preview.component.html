@@ -1,0 +1,38 @@
+<div  class="clearfix live-tv" *ngIf="block">
+    <div class="col-sm-6 text-center" style="padding: 0;" [ngClass]="{'player-style': (playerService.streamError$ | async)}">
+        <app-player *ngIf="assetId && !(playerService.streamError$ | async)" [assetId]="assetId"></app-player>
+        <div  *ngIf="(playerService.streamError$ | async)">
+            <img [src]="url" *ngIf="url && (playerService.streamError$ | async)" alt="">
+            <img src="http://via.placeholder.com/264x220/000?text={{assetId}}" alt="" *ngIf="!url">
+        </div>
+    </div>
+    <div class="col-sm-6 hidden-xs"  style="padding: 25px 0 0">
+        <ng-container  *ngFor="let program of scheduling; let i =index">
+            <div *ngIf="i < 2">
+                <h2>{{ i == 0 ? 'ON now' : "What's next"}}</h2>
+                <p style="font-weight: normal;font-size: medium">{{program.name}}</p>
+                <p><strong> {{ program.start_time*1000 | date:'hh:mm a'}} - {{program.end_time*1000 | date:'hh:mm a'}}</strong></p>
+                <p style="font-weight: normal;font-size: medium" >{{program.description}}</p>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<div *ngIf="block" class="live-tv-carousel">
+    <div *ngFor="let widget of block.widgets; let i = index" [attr.data-index]="i"
+         class="layout-container">
+        <app-carousel [data]="widget" [clickFn]="thumbClick.bind(this)"
+        ></app-carousel>
+    </div>
+</div>
+
+<div class="hidden-md hidden-lg hidden-sm"  style="padding: 10px 0 0">
+    <ng-container  *ngFor="let program of scheduling; let i =index">
+        <div *ngIf="i < 2">
+            <h2>{{ i == 0 ? 'ON now' : 'Whats next'}}</h2>
+            <p style="font-weight: normal;font-size: medium">{{program.name}}</p>
+            <p><strong> {{ program.start_time*1000 | date:'hh:mm a'}} - {{program.end_time*1000 | date:'hh:mm a'}}</strong></p>
+            <p style="font-weight: normal;font-size: medium" >{{program.description}}</p>
+        </div>
+    </ng-container>
+</div>

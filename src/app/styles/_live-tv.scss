@@ -1,0 +1,68 @@
+.live-tv{
+  min-height: 450px;
+  overflow: hidden;
+  @media (max-width: 767px) {
+    min-height: 350px;
+  }
+
+  .player-style{
+    position: relative;
+    @media (max-width: 767px) {
+      margin-top: 50px;
+    }
+    &>div{
+      min-height: 400px;
+      background-color: #000;
+      position: absolute;
+      top: 50px;
+      left: 2.5%;
+      right: 2.5%;
+      bottom: 25px;
+
+      @media (max-width: 767px) {
+        min-height: 300px;
+        top: 0px;
+        left: 0;
+        right: 0%;
+        bottom: 5px;
+      }
+      img{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+      }
+    }
+  }
+
+  .player-container{
+    position: absolute;
+    top: 50px;
+    width: 95%;
+    margin: 0 2.5%;
+    height: 400px;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}
+
+.live-tv-carousel {
+
+  app-carousel {
+    app-playlist-element {
+      .playlist-element  {
+        border: none;
+        padding: 35px;
+      }
+
+      .playlist-element img {
+        background-color: darkgray;
+        padding: 20px;
+      }
+    }
+  }
+}
